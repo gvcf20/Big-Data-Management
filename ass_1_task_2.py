@@ -2,8 +2,14 @@
 
 import pandas as pd
 
+from pandas.plotting import scatter_matrix
+import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.io as pio
+
 df = pd.read_csv('./moviedata.csv')
 
+print(df)
 # ==========================================================================================
 
 # a - Inspecting the DF
@@ -61,15 +67,37 @@ print("\n")
 
 # f - Deleting empty rows
 
-df.dropna();
-
+df_clean = df.dropna()
+print("Dataframe without rows that have at least one empty value:", df_clean)
 print("\n")
+# ==========================================================================================
 
+# Visualize parts of the data using pandas:plotting:scatter matrix and DataFrameGroupBy:hist
 
+selected_cols = [
+    'imdb_score',
+    'duration',
+    'budget',
+    'gross',
+    'num_critic_for_reviews',
+    'num_user_for_reviews',
+    'num_voted_users'
+]
 
+df_selected = df[selected_cols].dropna()
 
+fig_matrix = px.scatter_matrix(df_selected,
+                                dimensions=selected_cols,
+                                title="Scatter Matrix - Atributos de Filmes",
+                                height=900)
+fig_matrix.update_traces(diagonal_visible=True)
+fig_matrix.show()
 
+for col in selected_cols:
+    fig_hist = px.histogram(df_selected, x=col,
+                            nbins=40,
+                            title=f"Histograma - {col}",
+                            marginal='box') 
+    fig_hist.show()
 
-
-
-
+# ==========================================================================================
