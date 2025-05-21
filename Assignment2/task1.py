@@ -1,4 +1,4 @@
-### Task 1
+# Task 1 - Vinicius Pinho and Gabriel Vaz Cançado Ferreira
 
 from pyspark import SparkContext
 import random
