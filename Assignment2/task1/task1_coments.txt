@@ -1,0 +1,22 @@
+Task 1 - Comments
+ (a) A list of integers from 0 to 40,000 was created, then parallelized into an RDD using 4 partitions.
+ A filter transformation was applied using a lambda function to keep only the odd numbers. Finally,
+ the take() function was used to retrieve the first 7 elements of the resulting RDD.
+ (b) A list of 10,000 random integers between 1 and 100 was generated and parallelized into 5
+ partitions. A function was defined to assign each number to a bucket representing a range of values
+ (e.g., 1-20, 21-40, etc.). The map and reduceByKey transformations were used to count how many
+ values fall into each bucket, and the results were collected.
+ (c) The parallelize() function distributes a Python collection across a Spark cluster as an RDD. RDD
+ stands for Resilient Distributed Dataset, a core abstraction in Spark that supports distributed and
+ fault-tolerant data processing. In part (a), the list was parallelized and transformed using RDD
+ operations. Compared to Python's built-in filter(), RDD's filter() is distributed and scalable, better
+ suited for large datasets, while Python's filter() is faster and simpler for small datasets but limited by
+ single-machine resources.
+ (d) A text file was read into an RDD using textFile(). Each line was split into words, and lowercase
+ normalization was applied. A word count was performed using map and reduceByKey
+ transformations. The results were sorted in descending order of frequency, and the top 25 most
+ common words were displayed.
+ (e) This part extends part (d) by filtering out common stop words (auxiliary verbs and function
+ words). Words were converted to lowercase, non-alphabetical tokens were removed, and a
+ predefined list of stop words was excluded. The remaining 'meaningful' words were counted and
+ sorted by frequency, and the top 25 were shown.
